@@ -69,11 +69,10 @@ Make sure your `PATH` environment variable includes Android development tools li
 {{{
 export PATH=<sdk>/platforms/android-7/tools/:<sdk>/tools/:$PATH
 }}}
-Use the optional `--sdk` option to specify where vogar should look for Android APIs.
+Specify `--mode device` when launching vogar:
 {{{
 vogar \
   --mode device \
-  --sdk out/target/common/obj/JAVA_LIBRARIES/core_intermediates/classes.jar \
   <actions>
 }}}
 If your device doesn't have an SD card, vogar can be configured to use another directory with the option `--device-runner-dir /data/vogar`.
@@ -85,7 +84,6 @@ This is a variant of running on a Dalvik VM, so all of its setup applies. But in
 {{{
 vogar \
   --mode activity \
-  --sdk out/target/common/obj/JAVA_LIBRARIES/core_intermediates/classes.jar \
   <actions>
 }}}
 
