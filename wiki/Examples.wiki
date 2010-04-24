@@ -1,51 +1,17 @@
 #summary example vogar commands
 
-=Where to run it=
-
-===Running tests on Apache Harmony===
-Download and build [http://harmony.apache.org/ Apache Harmony]. Then run:
-{{{
-vogar \
-    --mode host \
-    --java-home <harmony>/target/hdk/jdk/ \
-    <tests>
-}}}
-
-===Running tests on a plain Dalvik VM===
-You'll need an [http://developer.android.com/sdk/index.html Android SDK] and a device or emulator. If you have multiple devices, run `adb devices`, and set the `ANDROID_SERIAL` environment variable to the target's device ID. The device or emulator should be reachable via `adb`, so commands like `adb ls` should work.
-
-Make sure your `PATH` environment variable includes Android development tools like: `adb` and `dx`. You can enter this at the command line for one-time-use, or add it to `~/.bashrc` for durable use.
-{{{
-export PATH=<sdk>/platforms/android-7/tools/:<sdk>/tools/:$PATH
-}}}
-Use the `--sdk` option to specify where vogar should look for Android APIs.
-{{{
-vogar
-  --mode device
-  --sdk out/target/common/obj/JAVA_LIBRARIES/core_intermediates/classes.jar
-  <actions>
-}}}
-
-
-=What to run=
-
-===jtreg tests===
-Write or download some [http://openjdk.java.net/jtreg/index.html jtreg] tests! [http://openjdk.java.net/ OpenJDK] includes a large suite of tests for finding bugs in core class libraries. Then point vogar at a source *directory* containing tests.
-{{{
-vogar <openjdk>/test/java/util/TreeMap/
-}}}
-Vogar doesn't support prebuilt jtreg tests.
-
-===Caliper benchmarks===
-You'll need a benchmark to run. Caliper includes some in its `src/examples` directory. Then point vogar at a benchmark. Be sure to include the `--stream` option, which forces output to be printed:
-{{{
-vogar --stream <caliper>/src/examples/EnumSetContainsBenchmark.java
-}}}
+==What to run==
 
 ===JUnit tests===
 Write some JUnit tests. Every project includes a bunch of these. 
 {{{
 vogar <android>/dalvik/libcore/xml/src/test/java/tests/xml/DomTest.java
+}}}
+
+===Caliper benchmarks===
+You'll need a benchmark to run. Caliper includes some in its `src/examples` directory. Then point vogar at a benchmark. Be sure to include the `--stream` option, which forces output to be printed:
+{{{
+vogar --stream <caliper>/src/examples/EnumSetContainsBenchmark.java
 }}}
 
 ===Executable Java Programs===
@@ -54,15 +20,54 @@ Vogar can run Java programs that have a `public static void main(String[] args)`
 vogar --stream scratch/Main.java
 }}}
 
+===jtreg tests===
+Write or download some [http://openjdk.java.net/jtreg/index.html jtreg] tests! [http://openjdk.java.net/ OpenJDK] includes a large suite of tests for finding bugs in core class libraries. Then point vogar at a source *directory* containing tests.
+{{{
+vogar <openjdk>/test/java/util/TreeMap/
+}}}
+Vogar doesn't support prebuilt jtreg tests.
 
-= Introduction =
+==Where to run it==
 
-Add your content here.
+===Running on a local Java VM===
+Use `--mode host` to target a JVM on the local machine. You can optionally also specify `--java-home` to target a specific JVM:
+{{{
+vogar \
+    --mode host \
+    --java-home /System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/
+    <actions>
+}}}
 
+===Running on local Harmony VM===
+Download and build [http://harmony.apache.org/ Apache Harmony]. Then run:
+{{{
+vogar \
+    --mode host \
+    --java-home <harmony>/target/hdk/jdk/ \
+    <actions>
+}}}
 
-= Details =
+===Running on a Dalvik VM===
+You'll need an [http://developer.android.com/sdk/index.html Android SDK] and a device or emulator. If you have multiple devices, run `adb devices`, and set the `ANDROID_SERIAL` environment variable to the target's device ID. The device or emulator should be reachable via `adb`, so commands like `adb ls` should work.
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+Make sure your `PATH` environment variable includes Android development tools like: `adb` and `dx`. You can enter this at the command line for one-time-use, or add it to `~/.bashrc` for durable use.
+{{{
+export PATH=<sdk>/platforms/android-7/tools/:<sdk>/tools/:$PATH
+}}}
+Use the optional `--sdk` option to specify where vogar should look for Android APIs.
+{{{
+vogar \
+  --mode device \
+  --sdk out/target/common/obj/JAVA_LIBRARIES/core_intermediates/classes.jar \
+  <actions>
+}}}
+If your device doesn't have an SD card, vogar can be configured to use another directory with the option `--device-runner-dir /data/vogar`.
+
+===Running in an Android Activity===
+This is a variant of running on a Dalvik VM, so all of its setup applies. But instead of running on a bare JVM, code run as an activity participates in the Android application lifecycle. It inherits the same environment as real Android applications. This is most useful for running code that interacts with environment facets like class loaders and system properties.
+{{{
+vogar \
+  --mode activity \
+  --sdk out/target/common/obj/JAVA_LIBRARIES/core_intermediates/classes.jar \
+  <actions>
+}}}
