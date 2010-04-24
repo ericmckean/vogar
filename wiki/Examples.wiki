@@ -1,13 +1,19 @@
 #summary example vogar commands
 
 =Actions=
-Vogar accepts =.java= files, =.jar= files, directories, and class names as arguments to actions. It prepares the code for execution and then executes each action in its own VM.
+Vogar accepts `.java` files, `.jar` files, directories, and class names as arguments to actions. It prepares the code for execution and then executes each action in its own VM.
 {{{
 vogar dalvik/libcore/xml/src/test/java/tests/xml/DomTest.java
 }}}
 {{{
 vogar xmltests.jar tests.xml.DomTest
 }}}
+
+=Output=
+Vogar is a command line application. By default, it only shows the output of failed outcomes. Use `--stream` to show the output of all outcomes as it is emitted.
+
+Vogar can emit XML compatible with Ant's [http://ant.apache.org/manual/OptionalTasks/junitreport.html JUnitReport task] and continuous integration tools like [http://hudson-ci.org/ Hudson]. Use `--xml-reports-directory` to specify a directory where XML files should be written.
+
 
 =What to run=
 
@@ -79,4 +85,10 @@ vogar \
   --mode activity \
   --sdk out/target/common/obj/JAVA_LIBRARIES/core_intermediates/classes.jar \
   <actions>
+}}}
+
+=More Options=
+Full option descriptions are available in the online help.
+{{{
+vogar --help
 }}}
