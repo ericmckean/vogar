@@ -78,6 +78,8 @@ vogar \
 }}}
 If your device doesn't have an SD card, vogar can be configured to use another directory with the option `--device-runner-dir /data/vogar`.
 
+If you're running Caliper benchmarks, see [http://code.google.com/p/caliper/wiki/CaliperOnAndroid Caliper on Android] for some important gotchas.
+
 ===Running in an Android Activity===
 This is a variant of running on a Dalvik VM, so all of its setup applies. But instead of running on a bare JVM, code run as an activity participates in the Android application lifecycle. It inherits the same environment as real Android applications. This is most useful for running code that interacts with environment facets like class loaders and system properties.
 {{{
