@@ -1,6 +1,15 @@
 #summary example vogar commands
 
-==What to run==
+=Actions=
+Vogar accepts =.java= files, =.jar= files, directories, and class names as arguments to actions. It prepares the code for execution and then executes each action in its own VM.
+{{{
+vogar dalvik/libcore/xml/src/test/java/tests/xml/DomTest.java
+}}}
+{{{
+vogar xmltests.jar tests.xml.DomTest
+}}}
+
+=What to run=
 
 ===JUnit tests===
 Write some JUnit tests. Every project includes a bunch of these. 
@@ -27,7 +36,7 @@ vogar <openjdk>/test/java/util/TreeMap/
 }}}
 Vogar doesn't support prebuilt jtreg tests.
 
-==Where to run it==
+=Where to run it=
 
 ===Running on a local Java VM===
 Use `--mode host` to target a JVM on the local machine. You can optionally also specify `--java-home` to target a specific JVM:
