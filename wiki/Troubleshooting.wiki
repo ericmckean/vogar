@@ -1,0 +1,6 @@
+#summary Solutions to common problems
+
+=Troubleshooting=
+
+===Cannot find symbol: KnownFailure===
+Consider setting the build classpath to `out/target/common/obj/JAVA_LIBRARIES/core_intermediates/classes.jar`. Dalvik tests depend on marker annotations, but these annotations aren't on the build classpath for host builds.
