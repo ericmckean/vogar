@@ -1,0 +1,68 @@
+#summary example vogar commands
+
+=Where to run it=
+
+===Running tests on Apache Harmony===
+Download and build [http://harmony.apache.org/ Apache Harmony]. Then run:
+{{{
+vogar \
+    --mode host \
+    --java-home <harmony>/target/hdk/jdk/ \
+    <tests>
+}}}
+
+===Running tests on a plain Dalvik VM===
+You'll need an [http://developer.android.com/sdk/index.html Android SDK] and a device or emulator. If you have multiple devices, run `adb devices`, and set the `ANDROID_SERIAL` environment variable to the target's device ID. The device or emulator should be reachable via `adb`, so commands like `adb ls` should work.
+
+Make sure your `PATH` environment variable includes Android development tools like: `adb` and `dx`. You can enter this at the command line for one-time-use, or add it to `~/.bashrc` for durable use.
+{{{
+export PATH=<sdk>/platforms/android-7/tools/:<sdk>/tools/:$PATH
+}}}
+Use the `--sdk` option to specify where vogar should look for Android APIs.
+{{{
+vogar
+  --mode device
+  --sdk out/target/common/obj/JAVA_LIBRARIES/core_intermediates/classes.jar
+  <actions>
+}}}
+
+
+=What to run=
+
+===jtreg tests===
+Write or download some [http://openjdk.java.net/jtreg/index.html jtreg] tests! [http://openjdk.java.net/ OpenJDK] includes a large suite of tests for finding bugs in core class libraries. Then point vogar at a source *directory* containing tests.
+{{{
+vogar <openjdk>/test/java/util/TreeMap/
+}}}
+Vogar doesn't support prebuilt jtreg tests.
+
+===Caliper benchmarks===
+You'll need a benchmark to run. Caliper includes some in its `src/examples` directory. Then point vogar at a benchmark. Be sure to include the `--stream` option, which forces output to be printed:
+{{{
+vogar --stream <caliper>/src/examples/EnumSetContainsBenchmark.java
+}}}
+
+===JUnit tests===
+Write some JUnit tests. Every project includes a bunch of these. 
+{{{
+vogar <android>/dalvik/libcore/xml/src/test/java/tests/xml/DomTest.java
+}}}
+
+===Executable Java Programs===
+Vogar can run Java programs that have a `public static void main(String[] args)` method. Include the `--stream` option to see the program's output.
+{{{
+vogar --stream scratch/Main.java
+}}}
+
+
+= Introduction =
+
+Add your content here.
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
