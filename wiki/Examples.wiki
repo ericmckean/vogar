@@ -45,10 +45,10 @@ Vogar doesn't support prebuilt jtreg tests.
 =Where to run it=
 
 ===Running on a local Java VM===
-Use `--mode host` to target a JVM on the local machine. You can optionally also specify `--java-home` to target a specific JVM:
+Use `--mode jvm` to target a JVM on the local machine. You can optionally also specify `--java-home` to target a specific JVM:
 {{{
 vogar \
-    --mode host \
+    --mode jvm \
     --java-home /System/Library/Frameworks/JavaVM.framework/Versions/1.6/Home/
     <actions>
 }}}
@@ -57,7 +57,7 @@ vogar \
 Download and build [http://harmony.apache.org/ Apache Harmony]. Then run:
 {{{
 vogar \
-    --mode host \
+    --mode jvm \
     --java-home <harmony>/target/hdk/jdk/ \
     <actions>
 }}}
