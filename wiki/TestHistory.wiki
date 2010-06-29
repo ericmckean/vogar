@@ -1,6 +1,37 @@
 #summary Guide to Vogar's test history capabilities
 #labels Phase-Deploy
 
+= Quick Summary / Cheat Sheet =
+
+To automatically record the results of tests (this option mostly to be used on a continuous build server) (these can be included either in ~/.vogarconfig or on the command-line):
+
+{{{
+--record-results
+--results-dir path/to/desired/results/dir
+}}}
+
+To automatically compare against results generated with --record-results (this can be included either in ~/.vogarconfig or on the command-line):
+
+{{{
+--results-dir path/to/results/dir
+}}}
+
+To save the flags and targets for a test, and record a snapshot of its result (include this on the command-line. The tag directory may be given in .vogarconfig):
+
+{{{
+--tag <tagname> [--tag-overwrite] (if the tag already exists, this will overwrite it and its results)
+--tag-dir path/to/desired/tags/dir
+}}}
+
+To run a previously created tag (include this on the command-line, any additional flags provided will override those provided by the tag. The tag directory may be given in .vogarconfig):
+
+{{{
+--run-tag <tagname>
+--tag-dir path/to/desired/tags/dir
+}}}
+
+Note that you can run somebody else's tags by simply specifying the correct tag directory (as long as its permissions allow you to see it).
+
 = Introduction =
 
 One of the primary uses of Vogar is as a test runner. It can be used to run a large number of regression tests as, for example, part of a continuous build. However, in many projects with large regression test suites, not all tests may be passing all the time. It can be difficult for a developer to know whether a failure of a particular test is due to a change he made, or is a preexisting failure. Similarly, the continuous build needs to keep track of test failures so that it can detect true regressions and address them quickly.
