@@ -102,6 +102,8 @@ Outcomes: 34. Passed: 33, Failed: 1, Skipped: 0. Took 11.88 s.
 
 This tells us that in recent history, this test has worked, but that it's been broke twice before. It tells us that when we created the tag "pq", the test worked, so something between then and now broke the test. We could easily see if the test is chronically broken (if the "last 4" results ended in a failure), so this tells us that something we did broke the test.
 
+In addition, Vogar will try to tell you when you've fixed tests, so that you can verify that you fixed what you intended to fix.
+
 == Automatic test history ==
 
 === Recording test history ===
