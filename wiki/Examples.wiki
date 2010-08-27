@@ -26,7 +26,7 @@ vogar <android>/dalvik/libcore/xml/src/test/java/tests/xml/DomTest.java
 ===Caliper benchmarks===
 You'll need a benchmark to run. Caliper includes some in its `src/examples` directory. Then point vogar at a benchmark. Be sure to include the `--stream` option, which forces output to be printed:
 {{{
-vogar --stream <caliper>/src/examples/EnumSetContainsBenchmark.java
+vogar --stream <caliper>/test/examples/EnumSetContainsBenchmark.java
 }}}
 
 ===Executable Java Programs===
