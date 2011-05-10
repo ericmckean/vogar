@@ -10,7 +10,7 @@ vogar xmltests.jar tests.xml.DomTest
 }}}
 
 =Output=
-Vogar is a command line application. By default, it only shows the output of failed outcomes. Use `--stream` to show the output of all outcomes as it is emitted.
+Vogar is a command line application.
 
 Vogar can emit XML compatible with Ant's [http://ant.apache.org/manual/OptionalTasks/junitreport.html JUnitReport task] and continuous integration tools like [http://hudson-ci.org/ Hudson]. Use `--xml-reports-directory` to specify a directory where XML files should be written.
 
@@ -30,9 +30,9 @@ vogar --stream <caliper>/test/examples/EnumSetContainsBenchmark.java
 }}}
 
 ===Executable Java Programs===
-Vogar can run Java programs that have a `public static void main(String[] args)` method. Include the `--stream` option to see the program's output.
+Vogar can run Java programs that have a `public static void main(String[] args)` method.
 {{{
-vogar --stream scratch/Main.java
+vogar scratch/Main.java
 }}}
 
 ===jtreg tests===
@@ -67,7 +67,7 @@ You'll need an [http://developer.android.com/sdk/index.html Android SDK] and a d
 
 Make sure your `PATH` environment variable includes Android development tools like: `adb` and `dx`. You can enter this at the command line for one-time-use, or add it to `~/.bashrc` for durable use.
 {{{
-export PATH=<sdk>/platforms/android-7/tools/:<sdk>/tools/:$PATH
+export PATH=<sdk>/platform-tools/:<sdk>/tools/:$PATH
 }}}
 Specify `--mode device` when launching vogar:
 {{{
