@@ -1,18 +1,18 @@
 #summary Setting up vogar ssh
 
 =Vogar and SSH=
-USB and adb tend to be flaky. You can drive a device with `ssh` instead.
+`USB` and `adb` tend to be flaky. You can drive a device with `ssh` instead.
 
 ==Install an SSH server on the device==
 Install [https://market.android.com/details?id=berserker.android.apps.sshdroid SSHDroid], a simple on device ssh server.
 
 ==Configure passwordless authentication==
-Set up passwordless SSH access using [http://rcsg-gsir.imsb-dsgi.nrc-cnrc.gc.ca/documents/internet/node31.html ssh-keygen]. Transfer the authorized key to the device using `adb` and import it into SSHDroid.
+Set up passwordless SSH access using [http://rcsg-gsir.imsb-dsgi.nrc-cnrc.gc.ca/documents/internet/node31.html ssh-keygen]. Transfer the authorized key to the device using `adb` and import that into SSHDroid.
 
 ==Configure SSH control master==
-SSH key exchange takes several seconds. Since vogar makes many SSH connections, this is prohibitively slow. We can avoid the SSH key exchange penalty by sharing SSH session for all vogar commands.
+SSH key exchange takes several seconds. Since vogar makes many SSH connections, this is prohibitively slow. We can avoid the SSH key exchange penalty by sharing one SSH session among all vogar commands.
 
-Enable SSH control master in the `.ssh/config` file:
+Enable SSH control master in your `.ssh/config` file:
 {{{
 $ cat ~/.ssh/config 
 Host *
