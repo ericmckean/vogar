@@ -27,7 +27,7 @@ $ ssh -p 2222 192.168.144.89
 }}}
 Leave this session open indefinitely. As long as this session is alive,  SSH connections to that host will be fast.
 
-==Run vogar with the ssh==
+==Run vogar with ssh==
 Vogar's `--ssh` option expects a hostname and port separated by a colon. It will use `ssd` instead of `adb` to communicate with the device.
 {{{
 $ vogar --ssh 192.168.144.89:2222 --mode app_process MyTest.java 
